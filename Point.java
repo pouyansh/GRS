@@ -2,8 +2,9 @@ public class Point {
 
   public double x, y, z, dual;
   public int id, matchId;
+  private double[] distances;
 
-  Point(double x, double y, int id) {
+  Point(double x, double y, int id, int N) {
     this.x = x;
     this.y = y;
     this.z = 0;
@@ -12,7 +13,7 @@ public class Point {
     this.matchId = -1;
   }
 
-  Point(double x, double y, double z, int id) {
+  Point(double x, double y, double z, int id, int N) {
     this.x = x;
     this.y = y;
     this.z = z;

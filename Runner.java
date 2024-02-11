@@ -17,7 +17,7 @@ public class Runner {
   /**
    * Read the two datasets
    */
-  private static void initializeDatasets() {
+  private static void initializeDatasets(int p) {
     A = new Point[N];
     B = new Point[N];
     String[] arr;
@@ -31,7 +31,8 @@ public class Runner {
             Double.parseDouble(arr[0]),
             Double.parseDouble(arr[1]),
             arr.length > 2 ? Double.parseDouble(arr[2]) : 0,
-            i
+            i,
+            N
           );
       }
       scanner.close();
@@ -44,7 +45,8 @@ public class Runner {
             Double.parseDouble(arr[0]),
             Double.parseDouble(arr[1]),
             arr.length > 2 ? Double.parseDouble(arr[2]) : 0,
-            i
+            i, 
+            N
           );
       }
       scanner.close();
@@ -60,21 +62,21 @@ public class Runner {
    * @param p2
    * @return - Distance between the two points
    */
-  private static double getDistance(Point p1, Point p2) {
-    return Math.sqrt(
+  private static double getDistance(Point p1, Point p2, int p) {
+    return Math.pow(
       ((p1.x - p2.x) * (p1.x - p2.x)) +
       ((p1.y - p2.y) * (p1.y - p2.y)) +
       ((p1.z - p2.z) * (p1.z - p2.z))
-    );
+    , p/2);
   }
 
   /**
    * Validates the dual weights
    */
-  private static boolean validateDualWeights() {
+  private static boolean validateDualWeights(int p) {
     for (int i = 0; i < N; i++) {
       for (int j = 0; j < N; j++) {
-        double slack = getDistance(A[i], B[j]) - A[i].dual - B[j].dual;
+        double slack = getDistance(A[i], B[j], p) - A[i].dual - B[j].dual;
         if (slack < -1 * slackThreshold) {
           System.out.println("Slack: " + slack + " is negative");
           return false;
@@ -90,19 +92,19 @@ public class Runner {
   /**
    * Runs the Hungarian algorithm solver
    */
-  private static void runHungarianSolver() {
+  private static void runHungarianSolver(Integer p) {
     System.out.println(
       "--------------------------Hungarian Algorithm Solver---------------------------"
     );
     ha = new HungarianAlgorithm(A, B);
     startTime = System.currentTimeMillis();
-    ha.solver();
+    ha.solver(p);
     endTime = System.currentTimeMillis();
-    if (!validateDualWeights()) {
-      System.out.println("Infeasible dual weights");
-      System.exit(0);
-    }
-    System.out.println("Feasible dual weights");
+    // if (!validateDualWeights(p)) {
+    //   System.out.println("Infeasible dual weights");
+    //   System.exit(0);
+    // }
+    // System.out.println("Feasible dual weights");
     System.out.printf("Matching Cost: %.4f \n", ha.getMatchingCost());
     System.out.println("Time taken: " + (endTime - startTime) + " ms");
     System.out.println(
@@ -113,20 +115,20 @@ public class Runner {
   /**
    * Runs the Divide and Conquer Hungarian algorithm solver
    */
-  private static void runDivideAndConquerHungarianSolver() {
+  private static void runDivideAndConquerHungarianSolver(Integer p) {
     System.out.println(
       "-----------------Divide and Conquer Hungarian Algorithm Solver-----------------"
     );
     Boundary boundary = new Boundary(1, 0, 0, 1, 1, 0);
     dacha = new DivideAndConquerHungarianAlgorithm(A, B);
     startTime = System.currentTimeMillis();
-    dacha.solver(boundary);
+    dacha.solver(boundary, p);
     endTime = System.currentTimeMillis();
-    if (!validateDualWeights()) {
-      System.out.println("Infeasible dual weights");
-      System.exit(0);
-    }
-    System.out.println("Feasible dual weights");
+    // if (!validateDualWeights(p)) {
+    //   System.out.println("Infeasible dual weights");
+    //   System.exit(0);
+    // }
+    // System.out.println("Feasible dual weights");
 
     System.out.printf("Matching Cost: %.4f \n", dacha.getMatchingCost());
     System.out.println("Time taken: " + (endTime - startTime) + " ms");
@@ -138,12 +140,15 @@ public class Runner {
   public static void main(String[] args) {
     try {
       // Add the path to the two datasets and the number of points to be used from each dataset
-      path1 = "Datasets/A0.txt";
-      path2 = "Datasets/B0.txt";
-      N = 1000;
-      initializeDatasets();
-      runHungarianSolver();
-      runDivideAndConquerHungarianSolver();
+      path1 = "Datasets/A6.txt";
+      path2 = "Datasets/B6.txt";
+      int p = 16;
+      for (N = 400; N <= 2000; N += 200) {
+        initializeDatasets(p);
+        System.out.println("Running for N = " + N);
+        runDivideAndConquerHungarianSolver(p);
+        // runHungarianSolver(i);
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }

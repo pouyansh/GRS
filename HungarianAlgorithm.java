@@ -16,12 +16,12 @@ public class HungarianAlgorithm {
    * @param p2
    * @return - Distance between the two points
    */
-  private double getDistance(Point p1, Point p2) {
-    return Math.sqrt(
+  private double getDistance(Point p1, Point p2, Integer p) {
+    return Math.pow(
       ((p1.x - p2.x) * (p1.x - p2.x)) +
       ((p1.y - p2.y) * (p1.y - p2.y)) +
       ((p1.z - p2.z) * (p1.z - p2.z))
-    );
+    , p/2);
   }
 
   /**
@@ -48,14 +48,14 @@ public class HungarianAlgorithm {
   /**
    * Gets the matching cardinality and cost
    */
-  private void getMatchingCardinalityAndCost() {
+  private void getMatchingCardinalityAndCost(Integer p) {
     matchingCardinality = 0;
     matchingCost = 0;
     matching = new int[N];
     for (int i = 0; i < N; i++) {
       if (A[i].matchId != -1) {
         matchingCardinality++;
-        matchingCost += getDistance(A[i], B[A[i].matchId]);
+        matchingCost += getDistance(A[i], B[A[i].matchId], p);
         matching[i] = A[i].matchId;
       }
     }
@@ -102,7 +102,7 @@ public class HungarianAlgorithm {
   /**
    * Augments the matching by 1 and updates the dual weights.
    */
-  private void hungarianSearch() {
+  private void hungarianSearch(Integer p) {
     int n = 2 * N;
 
     // Initialize the distance and visited arrays
@@ -118,7 +118,7 @@ public class HungarianAlgorithm {
       if (bPoint.matchId == -1) {
         distance[N + i] = 0;
         for (int v = 0; v < N; v++) {
-          double slack = getDistance(A[v], bPoint) - A[v].dual - bPoint.dual;
+          double slack = getDistance(A[v], bPoint, p) - A[v].dual - bPoint.dual;
           if (Math.abs(slack) <= slackThreshold) {
             slack = 0;
           }
@@ -156,7 +156,7 @@ public class HungarianAlgorithm {
       Point bPoint = B[u];
       for (int v = 0; v < N; v++) {
         if (bPoint.matchId != v) {
-          double slack = getDistance(A[v], bPoint) - A[v].dual - bPoint.dual;
+          double slack = getDistance(A[v], bPoint, p) - A[v].dual - bPoint.dual;
           if (Math.abs(slack) <= slackThreshold) {
             slack = 0;
           }
@@ -203,13 +203,13 @@ public class HungarianAlgorithm {
   /**
    * Gets the minimum cost for exact euclidean bipartite matching of points in A and B
    */
-  public void solver() {
+  public void solver(Integer p) {
     distance = new double[2 * N];
     parent = new int[2 * N];
     visited = new boolean[N];
     for (int i = 0; i < N; i++) {
-      hungarianSearch();
+      hungarianSearch(p);
     }
-    getMatchingCardinalityAndCost();
+    getMatchingCardinalityAndCost(p);
   }
 }
