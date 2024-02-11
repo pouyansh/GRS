@@ -1,0 +1,45 @@
+Running for N = 400
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 2322 ms
+-------------------------------------------------------------------------------
+Running for N = 600
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 7832 ms
+-------------------------------------------------------------------------------
+Running for N = 800
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 18708 ms
+-------------------------------------------------------------------------------
+Running for N = 1000
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 36062 ms
+-------------------------------------------------------------------------------
+Running for N = 1200
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 62444 ms
+-------------------------------------------------------------------------------
+Running for N = 1400
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 98829 ms
+-------------------------------------------------------------------------------
+Running for N = 1600
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 147033 ms
+-------------------------------------------------------------------------------
+Running for N = 1800
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 208792 ms
+-------------------------------------------------------------------------------
+Running for N = 2000
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Matching Cost: 0.0000 
+Time taken: 285743 ms
+-------------------------------------------------------------------------------

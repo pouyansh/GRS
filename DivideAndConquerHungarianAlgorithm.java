@@ -5,9 +5,12 @@ public class DivideAndConquerHungarianAlgorithm {
   private double[] distance;
   private boolean[] visited;
   private double left, right, top, bottom, matchingCost;
-  static final double slackThreshold = 0.0000001;
+  static final double slackThreshold = Math.pow(10, -30);
   static final double INFINITY = Double.MAX_VALUE;
   private int[] matching, mappingB, parent;
+  public long operationsNum;
+  public int hungarianNum;
+  public int lastLevelHungrians;
 
   /**
    * @param A - List of points in A
@@ -17,6 +20,9 @@ public class DivideAndConquerHungarianAlgorithm {
     this.A = A;
     this.B = B;
     N = A.length;
+    this.operationsNum = 0;
+    this.hungarianNum = 0;
+    this.lastLevelHungrians = 0;
 
     // Clear the stale values
     for (int i = 0; i < N; i++) {
@@ -38,6 +44,7 @@ public class DivideAndConquerHungarianAlgorithm {
       ((p1.y - p2.y) * (p1.y - p2.y)) +
       ((p1.z - p2.z) * (p1.z - p2.z))
     , p/2);
+    // return p1.getDistance(p2, p);
   }
 
   /**
@@ -98,7 +105,7 @@ public class DivideAndConquerHungarianAlgorithm {
    * @param bPoint
    * @return Minimum distance of the point from the boundary
    */
-  private double getMinDistanceToBoundary(Boundary b, Point bPoint, Integer p) {
+  private double getMinDistanceToBoundary(Boundary b, Point bPoint, int p) {
     double topDist = b.getTop() - bPoint.y;
     double rightDist = b.getRight() - bPoint.x;
     double bottomDist = bPoint.y - b.getBottom();
@@ -109,7 +116,7 @@ public class DivideAndConquerHungarianAlgorithm {
     ), p);
   }
 
-  private void checkBoundaryDistance(Point bPoint, int u, Boundary b, Integer p) {
+  private void checkBoundaryDistance(Point bPoint, int u, Boundary b, int p) {
     double slack = getMinDistanceToBoundary(b, bPoint, p) - bPoint.dual;
     if (Math.abs(slack) <= slackThreshold) {
       slack = 0;
@@ -147,7 +154,8 @@ public class DivideAndConquerHungarianAlgorithm {
     Point[] B,
     Boundary b,
     int idx, 
-    int pp
+    int pp,
+    int level
   ) {
     int m = A.length;
     int k = m + B.length + 1;
@@ -158,6 +166,10 @@ public class DivideAndConquerHungarianAlgorithm {
       distance[i] = INFINITY;
       parent[i] = -1;
     }
+
+    this.operationsNum += A.length + B.length;
+    this.hungarianNum += 1;
+    if (level == 0) lastLevelHungrians++;
 
     // Distance from the source to itself is 0
     distance[m + idx + 1] = 0.0;
@@ -236,7 +248,7 @@ public class DivideAndConquerHungarianAlgorithm {
    * @param B - List of points in set B
    * @param b - Boundary
    */
-  void solverHelper(Point[] A, Point[] B, Boundary b, Integer pp) {
+  void solverHelper(Point[] A, Point[] B, Boundary b, int pp, int level) {
     Boundary bNew = new Boundary(
       b.getTop(),
       b.getBottom(),
@@ -404,10 +416,10 @@ public class DivideAndConquerHungarianAlgorithm {
     );
 
     // Solve the 4 subproblems independently
-    solverHelper(A1, B1, boundary1, pp);
-    solverHelper(A2, B2, boundary2, pp);
-    solverHelper(A3, B3, boundary3, pp);
-    solverHelper(A4, B4, boundary4, pp);
+    solverHelper(A1, B1, boundary1, pp, level + 1);
+    solverHelper(A2, B2, boundary2, pp, level + 1);
+    solverHelper(A3, B3, boundary3, pp, level + 1);
+    solverHelper(A4, B4, boundary4, pp, level + 1);
 
     for (int i = 0; i < B.length; i++) {
       mappingB[B[i].id] = i + A.length + 1;
@@ -426,7 +438,7 @@ public class DivideAndConquerHungarianAlgorithm {
         B[i].matchId = -2;
         continue;
       }
-      hungarianSearch(A, B, bNew, i, pp);
+      hungarianSearch(A, B, bNew, i, pp, level);
     }
   }
 
@@ -443,7 +455,7 @@ public class DivideAndConquerHungarianAlgorithm {
     parent = new int[2 * N + 1];
     visited = new boolean[2 * N + 1];
     mappingB = new int[N];
-    solverHelper(A, B, b, p);
-    getMatchingCardinalityAndCost(p);
+    solverHelper(A, B, b, p, 0);
+    // getMatchingCardinalityAndCost(p);
   }
 }

@@ -13,6 +13,10 @@ public class Runner {
   static DivideAndConquerHungarianAlgorithm dacha;
   static double slackThreshold = 0.0000001;
   static String path1, path2;
+  static long[] operationNums;
+  static int[] hungarianNums;
+  static double[] times;
+  static int[] lastLevelHungrians;
 
   /**
    * Read the two datasets
@@ -50,6 +54,13 @@ public class Runner {
           );
       }
       scanner.close();
+
+      // for (int i = 0; i < N; i++) {
+      //   for (int j = 0; j < N; j++) {
+      //     A[i].getDistance(B[j], p);
+      //   }
+      // }
+
     } catch (FileNotFoundException e) {
       System.out.println("File not found");
       e.printStackTrace();
@@ -115,10 +126,10 @@ public class Runner {
   /**
    * Runs the Divide and Conquer Hungarian algorithm solver
    */
-  private static void runDivideAndConquerHungarianSolver(Integer p) {
-    System.out.println(
-      "-----------------Divide and Conquer Hungarian Algorithm Solver-----------------"
-    );
+  private static void runDivideAndConquerHungarianSolver(int p, int index) {
+    // System.out.println(
+    //   "-----------------Divide and Conquer Hungarian Algorithm Solver-----------------"
+    // );
     Boundary boundary = new Boundary(1, 0, 0, 1, 1, 0);
     dacha = new DivideAndConquerHungarianAlgorithm(A, B);
     startTime = System.currentTimeMillis();
@@ -130,24 +141,54 @@ public class Runner {
     // }
     // System.out.println("Feasible dual weights");
 
-    System.out.printf("Matching Cost: %.4f \n", dacha.getMatchingCost());
-    System.out.println("Time taken: " + (endTime - startTime) + " ms");
-    System.out.println(
-      "-------------------------------------------------------------------------------"
-    );
+    operationNums[index] = dacha.operationsNum;
+    hungarianNums[index] = dacha.hungarianNum;
+    lastLevelHungrians[index] = dacha.lastLevelHungrians;
+    times[index] = (endTime - startTime);
+    // System.out.println("Operations Num: " + dacha.operationsNum);
+    // System.out.println("Time taken: " + (endTime - startTime) + " ms");
+    // System.out.println(
+    //   "-------------------------------------------------------------------------------"
+    // );
   }
 
   public static void main(String[] args) {
     try {
       // Add the path to the two datasets and the number of points to be used from each dataset
-      path1 = "Datasets/A6.txt";
-      path2 = "Datasets/B6.txt";
-      int p = 16;
-      for (N = 400; N <= 2000; N += 200) {
-        initializeDatasets(p);
-        System.out.println("Running for N = " + N);
-        runDivideAndConquerHungarianSolver(p);
-        // runHungarianSolver(i);
+      path1 = "Datasets/A9.txt";
+      path2 = "Datasets/B9.txt";
+      for (N = 2500; N <= 20000; N += 2500) {
+        operationNums = new long[6];
+        hungarianNums = new int[6];
+        lastLevelHungrians = new int[6];
+        times = new double[6];
+        for (int i = 0; i < 6; i++) {
+          int p = 2*(i+1);
+          initializeDatasets(p);
+          // System.out.println("Running for p = " + p);
+          runDivideAndConquerHungarianSolver(p, i);
+          // runHungarianSolver(i);
+        }
+        System.out.print("Operations: N: " + N + " -> ");
+        for (int i = 0; i < 6; i ++) {
+          System.out.print(operationNums[i] + " ");
+        }
+        System.out.println();
+        System.out.print("Hungarians: N: " + N + " -> ");
+        for (int i = 0; i < 6; i ++) {
+          System.out.print(hungarianNums[i] + " ");
+        }
+        System.out.println();
+        System.out.print("Last Level Hungarians: N: " + N + " -> ");
+        for (int i = 0; i < 6; i ++) {
+          System.out.print(lastLevelHungrians[i] + " ");
+        }
+        System.out.println();
+        System.out.print("Times: N: " + N + " -> ");
+        for (int i = 0; i < 6; i ++) {
+          System.out.print(times[i] + " ");
+        }
+        System.out.println();
       }
     } catch (Exception e) {
       e.printStackTrace();
