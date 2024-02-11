@@ -163,7 +163,7 @@ public class Runner {
         lastLevelHungrians = new int[6];
         times = new double[6];
         for (int i = 0; i < 6; i++) {
-          int p = 2*(i+1);
+          int p = i+1;
           initializeDatasets(p);
           // System.out.println("Running for p = " + p);
           runDivideAndConquerHungarianSolver(p, i);

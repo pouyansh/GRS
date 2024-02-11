@@ -4,7 +4,7 @@ public class DivideAndConquerHungarianAlgorithm {
   private Point[] A, B;
   private double[] distance;
   private boolean[] visited;
-  private double left, right, top, bottom, matchingCost;
+  private double left, right, top, bottom, front, back, matchingCost;
   static final double slackThreshold = Math.pow(10, -30);
   static final double INFINITY = Double.MAX_VALUE;
   private int[] matching, mappingB, parent;
@@ -100,24 +100,8 @@ public class DivideAndConquerHungarianAlgorithm {
     return minIdx;
   }
 
-  /**
-   * @param b
-   * @param bPoint
-   * @return Minimum distance of the point from the boundary
-   */
-  private double getMinDistanceToBoundary(Boundary b, Point bPoint, int p) {
-    double topDist = b.getTop() - bPoint.y;
-    double rightDist = b.getRight() - bPoint.x;
-    double bottomDist = bPoint.y - b.getBottom();
-    double leftDist = bPoint.x - b.getLeft();
-    return Math.pow(Math.min(
-      Math.min(topDist, bottomDist),
-      Math.min(rightDist, leftDist)
-    ), p);
-  }
-
   private void checkBoundaryDistance(Point bPoint, int u, Boundary b, int p) {
-    double slack = getMinDistanceToBoundary(b, bPoint, p) - bPoint.dual;
+    double slack = b.getMinDistanceToBoundary(bPoint, p) - bPoint.dual;
     if (Math.abs(slack) <= slackThreshold) {
       slack = 0;
     }
@@ -249,24 +233,6 @@ public class DivideAndConquerHungarianAlgorithm {
    * @param b - Boundary
    */
   void solverHelper(Point[] A, Point[] B, Boundary b, int pp, int level) {
-    Boundary bNew = new Boundary(
-      b.getTop(),
-      b.getBottom(),
-      b.getLeft(),
-      b.getRight()
-    );
-    if (b.getLeft() == left) {
-      bNew.setLeft(-INFINITY);
-    }
-    if (b.getRight() == right) {
-      bNew.setRight(INFINITY);
-    }
-    if (b.getTop() == top) {
-      bNew.setTop(INFINITY);
-    }
-    if (b.getBottom() == bottom) {
-      bNew.setBottom(-INFINITY);
-    }
 
     // If no points of set B are present or both left and right or both top and bottom boundaries are the same, do nothing
     if (B.length == 0) {
@@ -274,24 +240,21 @@ public class DivideAndConquerHungarianAlgorithm {
     }
 
     // If two opposite boundaries coincide, do nothing
-    if (
-      b.getTop() - b.getBottom() < slackThreshold ||
-      b.getRight() - b.getLeft() < slackThreshold
-    ) {
+    if (b.checkIfThin()) {
       return;
     }
 
     // If no points of set A are present, update the dual weights of all points in set B to be the shortest distance to the boundary
     if (A.length == 0) {
       for (int i = 0; i < B.length; i++) {
-        B[i].dual = getMinDistanceToBoundary(bNew, B[i], pp);
+        B[i].dual = b.getMinDistanceToBoundary(B[i], pp);
       }
       return;
     }
 
     // If only one point of set B is present, match it to the nearest point or the boundary
     if (B.length == 1) {
-      double minDist = getMinDistanceToBoundary(bNew, B[0], pp);
+      double minDist = b.getMinDistanceToBoundary(B[0], pp);
 
       int matchedPointIdx = -1;
       for (int i = 0; i < A.length; i++) {
@@ -313,11 +276,17 @@ public class DivideAndConquerHungarianAlgorithm {
     // Divide Step
     double xSplit = (b.getLeft() + b.getRight()) / 2;
     double ySplit = (b.getTop() + b.getBottom()) / 2;
+    double zSplit = (b.getFront() + b.getBack()) / 2;
     int a1 = 0, a2 = 0, a3 = 0, a4 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0;
+    int a5 = 0, a6 = 0, a7 = 0, a8 = 0, b5 = 0, b6 = 0, b7 = 0, b8 = 0;
+    int[] as = new int[8]; 
+    int[] bs = new int[8];
 
     // Assign the boxes to each point in set A
     for (int i = 0; i < A.length; i++) {
       Point p = A[i];
+      int index = 0;
+      if 
       if (p.x < xSplit) {
         if (p.y > ySplit) {
           a1++;
@@ -433,7 +402,7 @@ public class DivideAndConquerHungarianAlgorithm {
       }
 
       // Match to the boundary if possible
-      double minDist = getMinDistanceToBoundary(bNew, B[i], pp);
+      double minDist = b.getMinDistanceToBoundary(B[i], pp);
       if (Math.abs(minDist - B[i].dual) <= slackThreshold) {
         B[i].matchId = -2;
         continue;
@@ -451,6 +420,8 @@ public class DivideAndConquerHungarianAlgorithm {
     right = b.getRight();
     top = b.getTop();
     bottom = b.getBottom();
+    front = b.getFront();
+    back = b.getBack();
     distance = new double[2 * N + 1];
     parent = new int[2 * N + 1];
     visited = new boolean[2 * N + 1];

@@ -1,95 +1,63 @@
 public class Boundary {
 
-  private double top, bottom, left, right, front, back;
-
-  Boundary(double top, double bottom, double left, double right) {
-    this.top = top;
-    this.bottom = bottom;
-    this.left = left;
-    this.right = right;
-    this.front = 0;
-    this.back = 0;
-  }
+  public Point lowPoint, highPoint, originLowPoint, originHighPoint;
+  private Boundary adjusted;
+  private int dimension;
 
   Boundary(
-    double top,
-    double bottom,
-    double left,
-    double right,
-    double front,
-    double back
+    Point lowPoint,
+    Point highPoint,
+    Point originLowPoint,
+    Point originHighPoint,
+    boolean adjust
   ) {
-    this.top = top;
-    this.bottom = bottom;
-    this.left = left;
-    this.right = right;
-    this.front = front;
-    this.back = back;
+    this.lowPoint = lowPoint;
+    this.highPoint = highPoint;
+    this.originLowPoint = originLowPoint;
+    this.originHighPoint = originHighPoint;
+
+    this.dimension = lowPoint.coordinates.length;
+    if (adjust){
+      this.adjusted = new Boundary(lowPoint.copy(), highPoint.copy(), false);
+      for (int i = 0; i < dimension; i++) {
+        if (lowPoint.coordinates[i] == originLowPoint.coordinates[i]) {
+          this.adjusted.lowPoint[i] = -10;
+        }
+        if(highPoint.coordinates[i] == originHighPoint.coordinates[i]) {
+          this.adjusted.highPoint[i] = 10;
+        }
+      }
+    } else {
+      this.adjusted = this;
+    }
   }
 
-  public double getTop() {
-    return this.top;
+  public boolean checkIfThin(double threshold) {
+    for (int i = 0; i < this.dimension; i++) {
+      if (highPoint.coordinates[i] - lowPoint.coordinates[i] < threshold) 
+        return true;
+    }
+    return false;
   }
 
-  public void setTop(double top) {
-    this.top = top;
-  }
-
-  public double getBottom() {
-    return this.bottom;
-  }
-
-  public void setBottom(double bottom) {
-    this.bottom = bottom;
-  }
-
-  public double getLeft() {
-    return this.left;
-  }
-
-  public void setLeft(double left) {
-    this.left = left;
-  }
-
-  public double getRight() {
-    return this.right;
-  }
-
-  public void setRight(double right) {
-    this.right = right;
-  }
-
-  public double getFront() {
-    return this.front;
-  }
-
-  public void setFront(double front) {
-    this.front = front;
-  }
-
-  public double getBack() {
-    return this.back;
-  }
-
-  public void setBack(double back) {
-    this.back = back;
+  private double getMinDistanceToBoundary(Point bPoint, int p) {
+    double minDist = Double.MAX_VALUE;
+    for (int i = 0; i < this.dimension; i++) {
+      minDist = Math.min(minDist, Math.min(
+        adjusted.highPoint.coordinates[i] - bPoint.coordinates[i],
+        bPoint.coordinates[i] - adjusted.lowPoint.coordinates[i])
+      );
+    }
+    return Math.pow(minDist, p);
   }
 
   @Override
   public String toString() {
     return String.format(
-      "Top: " +
-      this.top +
-      " Botttom: " +
-      this.bottom +
-      " Left: " +
-      this.left +
-      " Right: " +
-      this.right +
-      " Front: " +
-      this.front +
-      " Back: " +
-      this.back
+      "Low Point: " +
+      this.lowPoint.toString() +
+      " Top Point: " +
+      this.topPoint.toString()
     );
   }
 }

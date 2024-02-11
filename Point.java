@@ -1,47 +1,28 @@
 public class Point {
 
   public double x, y, z, dual;
+  public double[] coordinates;
   public int id, matchId;
-  private double[] distances;
+  private int dimension;
 
-  Point(double x, double y, int id, int N) {
-    this.x = x;
-    this.y = y;
-    this.z = 0;
-    this.id = id;
-    this.dual = 0.0;
-    this.matchId = -1;
-    // this.distances = new double[N];
-    // for (int i = 0; i < N; i++) {
-    //   this.distances[i] = -1;
-    // }
+  Point(double[] coordinates) {
+    this.coordinates = coordinates;
+    this.dimension = coordinates.length;
   }
 
-  Point(double x, double y, double z, int id, int N) {
-    this.x = x;
-    this.y = y;
-    this.z = z;
-    this.id = id;
-    this.dual = 0.0;
-    this.matchId = -1;
-    // this.distances = new double[N];
-    // for (int i = 0; i < N; i++) {
-    //   this.distances[i] = -1;
-    // }
+  double getDistance(Point other, int p) {
+    double distance = 0;
+    for (int i = 0; i < this.dimension; i++) {
+      distance += Math.pow(this.coordinates[i] - other.coordinates[i], 2);
+    }
+    return Math.pow(distance, p/2);
   }
 
-  // double getDistance(Point other, int p) {
-  //   if(this.distances[other.id] == -1) {
-  //     this.distances[other.id] = Math.pow(
-  //         ((this.x - other.x) * (this.x - other.x)) +
-  //         ((this.y - other.y) * (this.y - other.y)) +
-  //         ((this.z - other.z) * (this.z - other.z))
-  //       , p/2);
-  //     // System.out.println(this.distances[other.id]);
-
-  //   }
-  //   return this.distances[other.id];
-  // }
+  public Point copy() {
+    double[] copyCoordinates = new double[this.dimension];
+    System.arraycopy(this.coordinates, 0, copyCoordinates, 0, this.dimension);
+    return new Point(copyCoordinates);
+  }
 
   @Override
   public String toString() {
