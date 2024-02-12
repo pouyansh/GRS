@@ -16,12 +16,8 @@ public class HungarianAlgorithm {
    * @param p2
    * @return - Distance between the two points
    */
-  private double getDistance(Point p1, Point p2, Integer p) {
-    return Math.pow(
-      ((p1.x - p2.x) * (p1.x - p2.x)) +
-      ((p1.y - p2.y) * (p1.y - p2.y)) +
-      ((p1.z - p2.z) * (p1.z - p2.z))
-    , p/2);
+  private double getDistance(Point p1, Point p2, int p) {
+    return p1.getDistance(p2, p);
   }
 
   /**
