@@ -22,7 +22,10 @@ public class Point {
   double getDistance(Point other, int p) {
     double distance = 0;
     for (int i = 0; i < this.dimension; i++) {
-      distance += Math.pow(this.coordinates[i] - other.coordinates[i], 2);
+      distance += (this.coordinates[i] - other.coordinates[i]) * (this.coordinates[i] - other.coordinates[i]);
+    }
+    if (p%2 == 1) {
+      return Math.pow(distance, (float)p/2);
     }
     return Math.pow(distance, p/2);
   }

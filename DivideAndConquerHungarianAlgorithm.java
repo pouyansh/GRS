@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class DivideAndConquerHungarianAlgorithm {
 
   private int N, matchingCardinality;
@@ -146,7 +144,7 @@ public class DivideAndConquerHungarianAlgorithm {
     // Initialize the distance and visited arrays
     for (int i = 0; i < k; i++) {
       visited[i] = false;
-      distance[i] = INFINITY;
+      distance[i] = 10;
       parent[i] = -1;
     }
 
@@ -159,12 +157,9 @@ public class DivideAndConquerHungarianAlgorithm {
     double lMin = INFINITY;
     int freeMinDistanceIdxInA = -1;
 
-    // System.out.println(b.A.length + " " + b.B.length + " " + idx);
     checkBoundaryDistance(b.B[idx], m + idx + 1, b, pp);
     
     performNormalCall(b.B[idx], b, m + idx + 1, m, pp);
-    // System.out.println("dist:" + Arrays.toString(distance));
-    // System.out.println("pare:" + Arrays.toString(parent));
 
     // Conduct Dijsktra's until a free point in set A or a boundary point is found
     while (true) {
@@ -177,7 +172,6 @@ public class DivideAndConquerHungarianAlgorithm {
         break;
       }
 
-      // System.out.println("found " + u + " " + b.A[u - 1].matchId + " " + mappingB[b.A[u - 1].matchId]);
 
       // Mark u as visited
       visited[u] = true;
@@ -187,8 +181,6 @@ public class DivideAndConquerHungarianAlgorithm {
       int w = mappingB[b.A[u - 1].matchId];
       distance[w] = distance[u];
       parent[w] = u;
-      // System.out.println("dist:" + Arrays.toString(distance));
-      // System.out.println(Arrays.toString(parent));
       u = w;
 
       // u is now a point of B
@@ -196,10 +188,6 @@ public class DivideAndConquerHungarianAlgorithm {
       checkBoundaryDistance(b.B[u - m - 1], u, b, pp);
       performNormalCall(b.B[u - m - 1], b, u, m, pp);
     }
-
-    // System.out.println("here " + b.toString());
-
-    // Get the augmenting path
     int pathArraySize = 0;
     int freeMinDistanceIdxInACopy = freeMinDistanceIdxInA;
     while (freeMinDistanceIdxInACopy > -1) {

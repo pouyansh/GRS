@@ -171,7 +171,7 @@ public class Runner {
     path1 = "Datasets/A1.txt";
     path2 = "Datasets/B1.txt";
     for (dimension = 2; dimension <= 8; dimension += 2) {
-      for (N = 1000; N <= 10000; N += 1500) {
+      for (N = 1000; N <= 1000; N += 1500) {
         System.out.println(
           "----------------------------------"
         );
@@ -186,28 +186,28 @@ public class Runner {
         lastLevelHungrians = new int[6];
         times = new double[6];
         generateDatasets();
-        // for (int i = 0; i < 2; i++) {
-        //   int p = i+3;
-        //   runDivideAndConquerHungarianSolver(p, i);
-        // }
-        runDivideAndConquerHungarianSolver(1, 0);
+        for (int i = 0; i < 5; i++) {
+          int p = i+1;
+          runDivideAndConquerHungarianSolver(p, i);
+        }
+        // runDivideAndConquerHungarianSolver(1, 0);
         System.out.print("Operations -> ");
-        for (int i = 0; i < 2; i ++) {
+        for (int i = 0; i < 6; i ++) {
           System.out.print(operationNums[i] + " ");
         }
         System.out.println();
         System.out.print("Hungarians -> ");
-        for (int i = 0; i < 2; i ++) {
+        for (int i = 0; i < 6; i ++) {
           System.out.print(hungarianNums[i] + " ");
         }
         System.out.println();
         System.out.print("Last Level Hungarians -> ");
-        for (int i = 0; i < 2; i ++) {
+        for (int i = 0; i < 6; i ++) {
           System.out.print(lastLevelHungrians[i] + " ");
         }
         System.out.println();
         System.out.print("Times -> ");
-        for (int i = 0; i < 2; i ++) {
+        for (int i = 0; i < 6; i ++) {
           System.out.print(times[i] + " ");
         }
         System.out.println();
