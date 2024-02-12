@@ -1,11 +1,14 @@
+import java.util.Arrays;
+
 public class DivideAndConquerHungarianAlgorithm {
 
   private int N, matchingCardinality;
-  private Point[] A, B;
   private double[] distance;
   private boolean[] visited;
-  private double left, right, top, bottom, front, back, matchingCost;
+  private double matchingCost;
+  private Boundary origin;
   static final double slackThreshold = Math.pow(10, -30);
+  static final double widthThreshold = 0.000001;
   static final double INFINITY = Double.MAX_VALUE;
   private int[] matching, mappingB, parent;
   public long operationsNum;
@@ -16,20 +19,19 @@ public class DivideAndConquerHungarianAlgorithm {
    * @param A - List of points in A
    * @param B - List of points in B
    */
-  public DivideAndConquerHungarianAlgorithm(Point[] A, Point[] B) {
-    this.A = A;
-    this.B = B;
-    N = A.length;
+  public DivideAndConquerHungarianAlgorithm(Boundary b) {
+    N = b.A.length;
     this.operationsNum = 0;
     this.hungarianNum = 0;
     this.lastLevelHungrians = 0;
+    this.origin = b;
 
     // Clear the stale values
     for (int i = 0; i < N; i++) {
-      this.A[i].matchId = -1;
-      this.A[i].dual = 0;
-      this.B[i].matchId = -1;
-      this.B[i].dual = 0;
+      this.origin.A[i].matchId = -1;
+      this.origin.A[i].dual = 0;
+      this.origin.B[i].matchId = -1;
+      this.origin.B[i].dual = 0;
     }
   }
 
@@ -39,12 +41,12 @@ public class DivideAndConquerHungarianAlgorithm {
    * @return - Distance between the two points
    */
   private double getDistance(Point p1, Point p2, Integer p) {
-    return Math.pow(
-      ((p1.x - p2.x) * (p1.x - p2.x)) +
-      ((p1.y - p2.y) * (p1.y - p2.y)) +
-      ((p1.z - p2.z) * (p1.z - p2.z))
-    , p/2);
-    // return p1.getDistance(p2, p);
+    // return Math.pow(
+    //   ((p1.x - p2.x) * (p1.x - p2.x)) +
+    //   ((p1.y - p2.y) * (p1.y - p2.y)) +
+    //   ((p1.z - p2.z) * (p1.z - p2.z))
+    // , p/2);
+    return p1.getDistance(p2, p);
   }
 
   /**
@@ -71,15 +73,15 @@ public class DivideAndConquerHungarianAlgorithm {
   /**
    * Gets the matching cardinality and cost
    */
-  private void getMatchingCardinalityAndCost(int p) {
+  private void getMatchingCardinalityAndCost(Boundary b, int p) {
     matchingCardinality = 0;
     matchingCost = 0;
     matching = new int[N];
     for (int i = 0; i < N; i++) {
-      if (A[i].matchId != -1) {
+      if (b.A[i].matchId != -1) {
         matchingCardinality++;
-        matchingCost += getDistance(A[i], B[A[i].matchId], p);
-        matching[i] = A[i].matchId;
+        matchingCost += getDistance(b.A[i], b.B[b.A[i].matchId], p);
+        matching[i] = b.A[i].matchId;
       }
     }
   }
@@ -111,11 +113,10 @@ public class DivideAndConquerHungarianAlgorithm {
     }
   }
 
-  private void performNormalCall(Point bPoint, Point[] A, int u, int m, int p) {
+  private void performNormalCall(Point bPoint, Boundary b, int u, int m, int p) {
     for (int v = 1; v < m + 1; v++) {
-      if (bPoint.matchId != A[v - 1].id) {
-        double slack =
-          getDistance(A[v - 1], bPoint, p) - A[v - 1].dual - bPoint.dual;
+      if (bPoint.matchId != b.A[v - 1].id) {
+        double slack = b.A[v - 1].getDistance(bPoint, p) - b.A[v - 1].dual - bPoint.dual;
         if (Math.abs(slack) <= slackThreshold) {
           slack = 0;
         }
@@ -134,15 +135,13 @@ public class DivideAndConquerHungarianAlgorithm {
    * @param b - Boundary
    */
   void hungarianSearch(
-    Point[] A,
-    Point[] B,
     Boundary b,
     int idx, 
     int pp,
     int level
   ) {
-    int m = A.length;
-    int k = m + B.length + 1;
+    int m = b.A.length;
+    int k = m + b.B.length + 1;
 
     // Initialize the distance and visited arrays
     for (int i = 0; i < k; i++) {
@@ -151,7 +150,7 @@ public class DivideAndConquerHungarianAlgorithm {
       parent[i] = -1;
     }
 
-    this.operationsNum += A.length + B.length;
+    this.operationsNum += b.A.length + b.B.length;
     this.hungarianNum += 1;
     if (level == 0) lastLevelHungrians++;
 
@@ -160,35 +159,45 @@ public class DivideAndConquerHungarianAlgorithm {
     double lMin = INFINITY;
     int freeMinDistanceIdxInA = -1;
 
-    checkBoundaryDistance(B[idx], m + idx + 1, b, pp);
-    performNormalCall(B[idx], A, m + idx + 1, m, pp);
+    // System.out.println(b.A.length + " " + b.B.length + " " + idx);
+    checkBoundaryDistance(b.B[idx], m + idx + 1, b, pp);
+    
+    performNormalCall(b.B[idx], b, m + idx + 1, m, pp);
+    // System.out.println("dist:" + Arrays.toString(distance));
+    // System.out.println("pare:" + Arrays.toString(parent));
 
     // Conduct Dijsktra's until a free point in set A or a boundary point is found
     while (true) {
       int u = getMinDistanceNode(m + 1);
 
       // Stop as soon as a free point in A or a boundary point is found
-      if (u == 0 || A[u - 1].matchId == -1) {
+      if (u == 0 || b.A[u - 1].matchId == -1) {
         freeMinDistanceIdxInA = u;
         lMin = distance[u];
         break;
       }
+
+      // System.out.println("found " + u + " " + b.A[u - 1].matchId + " " + mappingB[b.A[u - 1].matchId]);
 
       // Mark u as visited
       visited[u] = true;
 
       // Update the distances of the neighbours of u
       // u is a matched point in A and will have only one neighbor
-      int w = mappingB[A[u - 1].matchId];
+      int w = mappingB[b.A[u - 1].matchId];
       distance[w] = distance[u];
       parent[w] = u;
+      // System.out.println("dist:" + Arrays.toString(distance));
+      // System.out.println(Arrays.toString(parent));
       u = w;
 
       // u is now a point of B
       // All the boundaries and unmatched points in A can be reached from u
-      checkBoundaryDistance(B[u - m - 1], u, b, pp);
-      performNormalCall(B[u - m - 1], A, u, m, pp);
+      checkBoundaryDistance(b.B[u - m - 1], u, b, pp);
+      performNormalCall(b.B[u - m - 1], b, u, m, pp);
     }
+
+    // System.out.println("here " + b.toString());
 
     // Get the augmenting path
     int pathArraySize = 0;
@@ -207,10 +216,10 @@ public class DivideAndConquerHungarianAlgorithm {
     // Update the matching (Augmenting the path)
     for (int i = 0; i < pathArraySize - 1; i += 2) {
       if (path[i] == 0) {
-        B[path[i + 1] - m - 1].matchId = -2;
+        b.B[path[i + 1] - m - 1].matchId = -2;
       } else {
-        A[path[i] - 1].matchId = B[path[i + 1] - m - 1].id;
-        B[path[i + 1] - m - 1].matchId = A[path[i] - 1].id;
+        b.A[path[i] - 1].matchId = b.B[path[i + 1] - m - 1].id;
+        b.B[path[i + 1] - m - 1].matchId = b.A[path[i] - 1].id;
       }
     }
 
@@ -218,9 +227,9 @@ public class DivideAndConquerHungarianAlgorithm {
     for (int i = 1; i < k; i++) {
       if (distance[i] < lMin) {
         if (i >= m + 1) {
-          B[i - m - 1].dual = B[i - m - 1].dual + (lMin - distance[i]); // dual weight update of points in set B
+          b.B[i - m - 1].dual = b.B[i - m - 1].dual + (lMin - distance[i]); // dual weight update of points in set B
         } else {
-          A[i - 1].dual = A[i - 1].dual - (lMin - distance[i]); // dual weight update of points in set A
+          b.A[i - 1].dual = b.A[i - 1].dual - (lMin - distance[i]); // dual weight update of points in set A
         }
       }
     }
@@ -232,182 +241,73 @@ public class DivideAndConquerHungarianAlgorithm {
    * @param B - List of points in set B
    * @param b - Boundary
    */
-  void solverHelper(Point[] A, Point[] B, Boundary b, int pp, int level) {
+  void solverHelper(Boundary b, int pp, int level) {
 
     // If no points of set B are present or both left and right or both top and bottom boundaries are the same, do nothing
-    if (B.length == 0) {
+    if (b.B.length == 0) {
       return;
     }
 
     // If two opposite boundaries coincide, do nothing
-    if (b.checkIfThin()) {
+    if (b.checkIfThin(widthThreshold)) {
       return;
     }
 
     // If no points of set A are present, update the dual weights of all points in set B to be the shortest distance to the boundary
-    if (A.length == 0) {
-      for (int i = 0; i < B.length; i++) {
-        B[i].dual = b.getMinDistanceToBoundary(B[i], pp);
+    if (b.A.length == 0) {
+      for (int i = 0; i < b.B.length; i++) {
+        b.B[i].dual = b.getMinDistanceToBoundary(b.B[i], pp);
       }
       return;
     }
 
     // If only one point of set B is present, match it to the nearest point or the boundary
-    if (B.length == 1) {
-      double minDist = b.getMinDistanceToBoundary(B[0], pp);
+    if (b.B.length == 1) {
+      double minDist = b.getMinDistanceToBoundary(b.B[0], pp);
 
       int matchedPointIdx = -1;
-      for (int i = 0; i < A.length; i++) {
-        double temp = getDistance(A[i], B[0], pp);
+      for (int i = 0; i < b.A.length; i++) {
+        double temp = getDistance(b.A[i], b.B[0], pp);
         if (temp <= minDist) {
           minDist = temp;
           matchedPointIdx = i;
         }
       }
       if (matchedPointIdx != -1) {
-        B[0].matchId = A[matchedPointIdx].id;
-        A[matchedPointIdx].matchId = B[0].id;
+        b.B[0].matchId = b.A[matchedPointIdx].id;
+        b.A[matchedPointIdx].matchId = b.B[0].id;
       }
-      B[0].dual = minDist;
+      b.B[0].dual = minDist;
       return;
     }
 
     // Else split the box into 4 smaller boxes and recursively solve for the smaller subproblems
     // Divide Step
-    double xSplit = (b.getLeft() + b.getRight()) / 2;
-    double ySplit = (b.getTop() + b.getBottom()) / 2;
-    double zSplit = (b.getFront() + b.getBack()) / 2;
-    int a1 = 0, a2 = 0, a3 = 0, a4 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0;
-    int a5 = 0, a6 = 0, a7 = 0, a8 = 0, b5 = 0, b6 = 0, b7 = 0, b8 = 0;
-    int[] as = new int[8]; 
-    int[] bs = new int[8];
-
-    // Assign the boxes to each point in set A
-    for (int i = 0; i < A.length; i++) {
-      Point p = A[i];
-      int index = 0;
-      if 
-      if (p.x < xSplit) {
-        if (p.y > ySplit) {
-          a1++;
-        } else {
-          a3++;
-        }
-      } else {
-        if (p.y > ySplit) {
-          a2++;
-        } else {
-          a4++;
-        }
-      }
-    }
-
-    Point[] A1 = new Point[a1];
-    Point[] A2 = new Point[a2];
-    Point[] A3 = new Point[a3];
-    Point[] A4 = new Point[a4];
-
-    int i1 = 0, i2 = 0, i3 = 0, i4 = 0;
-    for (int i = 0; i < A.length; i++) {
-      Point p = A[i];
-      if (p.x < xSplit) {
-        if (p.y > ySplit) {
-          A1[i1++] = p;
-        } else {
-          A3[i3++] = p;
-        }
-      } else {
-        if (p.y > ySplit) {
-          A2[i2++] = p;
-        } else {
-          A4[i4++] = p;
-        }
-      }
-    }
-
-    // Assign the boxes to each point in set B
-    for (int i = 0; i < B.length; i++) {
-      Point p = B[i];
-      if (p.x < xSplit) {
-        if (p.y > ySplit) {
-          b1++;
-        } else {
-          b3++;
-        }
-      } else {
-        if (p.y > ySplit) {
-          b2++;
-        } else {
-          b4++;
-        }
-      }
-    }
-
-    i1 = 0;
-    i2 = 0;
-    i3 = 0;
-    i4 = 0;
-    Point[] B1 = new Point[b1];
-    Point[] B2 = new Point[b2];
-    Point[] B3 = new Point[b3];
-    Point[] B4 = new Point[b4];
-    for (int i = 0; i < B.length; i++) {
-      Point p = B[i];
-      if (p.x < xSplit) {
-        if (p.y > ySplit) {
-          B1[i1++] = p;
-        } else {
-          B3[i3++] = p;
-        }
-      } else {
-        if (p.y > ySplit) {
-          B2[i2++] = p;
-        } else {
-          B4[i4++] = p;
-        }
-      }
-    }
-
-    // Get the new boundaries for the 4 subproblems
-    Boundary boundary1 = new Boundary(b.getTop(), ySplit, b.getLeft(), xSplit);
-    Boundary boundary2 = new Boundary(b.getTop(), ySplit, xSplit, b.getRight());
-    Boundary boundary3 = new Boundary(
-      ySplit,
-      b.getBottom(),
-      b.getLeft(),
-      xSplit
-    );
-    Boundary boundary4 = new Boundary(
-      ySplit,
-      b.getBottom(),
-      xSplit,
-      b.getRight()
-    );
+    Boundary[] children = b.partition();
 
     // Solve the 4 subproblems independently
-    solverHelper(A1, B1, boundary1, pp, level + 1);
-    solverHelper(A2, B2, boundary2, pp, level + 1);
-    solverHelper(A3, B3, boundary3, pp, level + 1);
-    solverHelper(A4, B4, boundary4, pp, level + 1);
+    for (int i = 0; i < children.length; i++) {
+      solverHelper(children[i], pp, level + 1);
+    }
 
-    for (int i = 0; i < B.length; i++) {
-      mappingB[B[i].id] = i + A.length + 1;
+    for (int i = 0; i < b.B.length; i++) {
+      mappingB[b.B[i].id] = i + b.A.length + 1;
     }
 
     // Perform hungarian searches for the points matched to the boundaries
     // Conquer Step
-    for (int i = 0; i < B.length; i++) {
-      if (B[i].matchId >= 0) {
+    for (int i = 0; i < b.B.length; i++) {
+      if (b.B[i].matchId >= 0) {
         continue;
       }
 
       // Match to the boundary if possible
-      double minDist = b.getMinDistanceToBoundary(B[i], pp);
-      if (Math.abs(minDist - B[i].dual) <= slackThreshold) {
-        B[i].matchId = -2;
+      double minDist = b.getMinDistanceToBoundary(b.B[i], pp);
+      if (Math.abs(minDist - b.B[i].dual) <= slackThreshold) {
+        b.B[i].matchId = -2;
         continue;
       }
-      hungarianSearch(A, B, bNew, i, pp, level);
+      hungarianSearch(b, i, pp, level);
     }
   }
 
@@ -415,18 +315,12 @@ public class DivideAndConquerHungarianAlgorithm {
    * @param b - Boundary
    * @return - Minimum cost for exact euclidean bipartite matching of points in A and B
    */
-  public void solver(Boundary b, int p) {
-    left = b.getLeft();
-    right = b.getRight();
-    top = b.getTop();
-    bottom = b.getBottom();
-    front = b.getFront();
-    back = b.getBack();
+  public void solver(int p) {
     distance = new double[2 * N + 1];
     parent = new int[2 * N + 1];
     visited = new boolean[2 * N + 1];
     mappingB = new int[N];
-    solverHelper(A, B, b, p, 0);
-    // getMatchingCardinalityAndCost(p);
+    solverHelper(origin, p, 0);
+    getMatchingCardinalityAndCost(origin, p);
   }
 }
