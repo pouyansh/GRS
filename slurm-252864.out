@@ -114,3 +114,11 @@ LastLevel: 16397
 Time taken: 636566 ms
 -------------------------------------------------------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 17500dimension: 10 p: 6
+Operations: 708794729
+Hungarians: 78896
+LastLevel: 16396
+Time taken: 5201803 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+slurmstepd: error: *** JOB 252864 ON inf045 CANCELLED AT 2024-02-12T12:21:10 ***
