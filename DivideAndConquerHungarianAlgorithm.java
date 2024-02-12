@@ -8,7 +8,7 @@ public class DivideAndConquerHungarianAlgorithm {
   private double matchingCost;
   private Boundary origin;
   static final double slackThreshold = Math.pow(10, -30);
-  static final double widthThreshold = 0.000001;
+  static final double widthThreshold = 0.00000001;
   static final double INFINITY = Double.MAX_VALUE;
   private int[] matching, mappingB, parent;
   public long operationsNum;
