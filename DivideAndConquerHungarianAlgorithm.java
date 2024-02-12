@@ -321,6 +321,6 @@ public class DivideAndConquerHungarianAlgorithm {
     visited = new boolean[2 * N + 1];
     mappingB = new int[N];
     solverHelper(origin, p, 0);
-    getMatchingCardinalityAndCost(origin, p);
+    // getMatchingCardinalityAndCost(origin, p);
   }
 }

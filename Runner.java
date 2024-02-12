@@ -135,9 +135,9 @@ public class Runner {
    * Runs the Divide and Conquer Hungarian algorithm solver
    */
   private static void runDivideAndConquerHungarianSolver(int p, int index) {
-    // System.out.println(
-    //   "-----------------Divide and Conquer Hungarian Algorithm Solver-----------------"
-    // );
+    System.out.println(
+      "-----------------Divide and Conquer Hungarian Algorithm Solver-----------------"
+    );
     double[] lowCoords = {0, 0};
     double[] highCoords = {1, 1};
     Boundary boundary = new Boundary(new Point(lowCoords, -1), new Point(highCoords, -1), new Point(lowCoords, -1), new Point(highCoords, -1), A, B , true);
@@ -156,11 +156,14 @@ public class Runner {
     hungarianNums[index] = dacha.hungarianNum;
     lastLevelHungrians[index] = dacha.lastLevelHungrians;
     times[index] = (endTime - startTime);
-    // System.out.println("Matching cost: " + dacha.getMatchingCost());
-    // System.out.println("Time taken: " + (endTime - startTime) + " ms");
-    // System.out.println(
-    //   "-------------------------------------------------------------------------------"
-    // );
+    System.out.println("N: " + N + "dimension: " + dimension + " p: " + p);
+    System.out.println("Operations: " + dacha.operationsNum);
+    System.out.println("Hungarians: " + dacha.hungarianNum);
+    System.out.println("LastLevel: " + dacha.lastLevelHungrians);
+    System.out.println("Time taken: " + (endTime - startTime) + " ms");
+    System.out.println(
+      "-------------------------------------------------------------------------------"
+    );
   }
 
   public static void main(String[] args) {
@@ -168,8 +171,8 @@ public class Runner {
       // Add the path to the two datasets and the number of points to be used from each dataset
       path1 = "Datasets/A1.txt";
       path2 = "Datasets/B1.txt";
-      dimension = 4;
-      for (N = 2500; N <= 20000; N += 2500) {
+      dimension = 8;
+      for (N = 10000; N <= 25000; N += 2500) {
         System.out.println(
           "----------------------------------"
         );
@@ -184,7 +187,7 @@ public class Runner {
         lastLevelHungrians = new int[6];
         times = new double[6];
         generateDatasets();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
           int p = 2*(i+1);
           runDivideAndConquerHungarianSolver(p, i);
         }

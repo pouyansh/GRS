@@ -1,0 +1,116 @@
+----------------------------------
+N = 12500 dimension = 12
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500dimension: 12 p: 2
+Operations: 380391065
+Hungarians: 56252
+LastLevel: 12423
+Time taken: 1571843 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500dimension: 12 p: 4
+Operations: 379960824
+Hungarians: 55989
+LastLevel: 12423
+Time taken: 256350 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500dimension: 12 p: 6
+Operations: 379885615
+Hungarians: 55825
+LastLevel: 12423
+Time taken: 2046464 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500dimension: 12 p: 8
+Operations: 379715340
+Hungarians: 55688
+LastLevel: 12423
+Time taken: 2437104 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500dimension: 12 p: 10
+Operations: 379643425
+Hungarians: 55100
+LastLevel: 12423
+Time taken: 3143794 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500dimension: 12 p: 12
+Operations: 379486816
+Hungarians: 51248
+LastLevel: 12423
+Time taken: 3488578 ms
+-------------------------------------------------------------------------------
+Operations -> 380391065 379960824 379885615 379715340 379643425 379486816 
+Hungarians -> 56252 55989 55825 55688 55100 51248 
+Last Level Hungarians -> 12423 12423 12423 12423 12423 12423 
+Times -> 1571843.0 256350.0 2046464.0 2437104.0 3143794.0 3488578.0 
+----------------------------------
+N = 15000 dimension = 12
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 15000dimension: 12 p: 2
+Operations: 545911427
+Hungarians: 68080
+LastLevel: 14874
+Time taken: 2465399 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 15000dimension: 12 p: 4
+Operations: 545371973
+Hungarians: 67800
+LastLevel: 14874
+Time taken: 507456 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 15000dimension: 12 p: 6
+Operations: 545072363
+Hungarians: 67561
+LastLevel: 14874
+Time taken: 3659797 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 15000dimension: 12 p: 8
+Operations: 544964728
+Hungarians: 67393
+LastLevel: 14874
+Time taken: 4480120 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 15000dimension: 12 p: 10
+Operations: 544739556
+Hungarians: 66458
+LastLevel: 14874
+Time taken: 5452423 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 15000dimension: 12 p: 12
+Operations: 544580226
+Hungarians: 61316
+LastLevel: 14874
+Time taken: 6225366 ms
+-------------------------------------------------------------------------------
+Operations -> 545911427 545371973 545072363 544964728 544739556 544580226 
+Hungarians -> 68080 67800 67561 67393 66458 61316 
+Last Level Hungarians -> 14874 14874 14874 14874 14874 14874 
+Times -> 2465399.0 507456.0 3659797.0 4480120.0 5452423.0 6225366.0 
+----------------------------------
+N = 17500 dimension = 12
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 17500dimension: 12 p: 2
+Operations: 743942536
+Hungarians: 80758
+LastLevel: 17347
+Time taken: 3880106 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 17500dimension: 12 p: 4
+Operations: 743229394
+Hungarians: 80331
+LastLevel: 17347
+Time taken: 797058 ms
+-------------------------------------------------------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
