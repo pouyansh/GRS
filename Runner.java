@@ -170,24 +170,24 @@ public class Runner {
     // Add the path to the two datasets and the number of points to be used from each dataset
     path1 = "Datasets/A1.txt";
     path2 = "Datasets/B1.txt";
-    for (dimension = 2; dimension <= 8; dimension += 2) {
-      for (N = 1000; N <= 1000; N += 1500) {
-        System.out.println(
-          "----------------------------------"
-        );
-        System.out.println(
-          "N = " + N + " dimension = " + dimension 
-        );
-        System.out.println(
-          "----------------------------------"
-        );
+    for (dimension = 5; dimension <= 9; dimension += 1) {
+      for (N = 2500; N <= 12500; N += 2500) {
         operationNums = new long[6];
         hungarianNums = new int[6];
         lastLevelHungrians = new int[6];
         times = new double[6];
         generateDatasets();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i <= 5; i++) {
           int p = i+1;
+          System.out.println(
+          "----------------------------------"
+          );
+          System.out.println(
+            "N = " + N + " dimension = " + dimension + " p = " + p
+          );
+          System.out.println(
+            "----------------------------------"
+          );
           runDivideAndConquerHungarianSolver(p, i);
         }
         // runDivideAndConquerHungarianSolver(1, 0);

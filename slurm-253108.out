@@ -1,0 +1,49 @@
+----------------------------------
+N = 2500 dimension = 2 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 2500 dimension: 2 p: 1
+Operations: 1711280
+Hungarians: 4079
+LastLevel: 218
+Time taken: 31040 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 2 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 2500 dimension: 2 p: 2
+Operations: 1735822
+Hungarians: 4074
+LastLevel: 225
+Time taken: 33801 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 2 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 2500 dimension: 2 p: 3
+Operations: 1733063
+Hungarians: 3925
+LastLevel: 225
+Time taken: 32068 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 2 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 2500 dimension: 2 p: 4
+Operations: 1768859
+Hungarians: 2976
+LastLevel: 228
+Time taken: 3504 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 2 p = 5
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+slurmstepd: error: *** JOB 253108 ON inf007 CANCELLED AT 2024-02-12T18:02:25 ***

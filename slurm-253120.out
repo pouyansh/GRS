@@ -1,0 +1,74 @@
+----------------------------------
+N = 30000 dimension = 2 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 30000 dimension: 2 p: 1
+Operations: 83467436
+Hungarians: 49493
+LastLevel: 772
+Time taken: 10412954 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 30000 dimension = 2 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 30000 dimension: 2 p: 2
+Operations: 82582258
+Hungarians: 50657
+LastLevel: 741
+Time taken: 10531499 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 30000 dimension = 2 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 30000 dimension: 2 p: 3
+Operations: 82274837
+Hungarians: 50939
+LastLevel: 734
+Time taken: 10679703 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 30000 dimension = 2 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 30000 dimension: 2 p: 4
+Operations: 82210725
+Hungarians: 51093
+LastLevel: 728
+Time taken: 1148851 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 30000 dimension = 2 p = 5
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 30000 dimension: 2 p: 5
+Operations: 82123896
+Hungarians: 51019
+LastLevel: 726
+Time taken: 11048061 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 30000 dimension = 2 p = 6
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 30000 dimension: 2 p: 6
+Operations: 81636970
+Hungarians: 50233
+LastLevel: 723
+Time taken: 10520097 ms
+-------------------------------------------------------------------------------
+Operations -> 83467436 82582258 82274837 82210725 82123896 81636970 
+Hungarians -> 49493 50657 50939 51093 51019 50233 
+Last Level Hungarians -> 772 741 734 728 726 723 
+Times -> 1.0412954E7 1.0531499E7 1.0679703E7 1148851.0 1.1048061E7 1.0520097E7 
+----------------------------------
+N = 40000 dimension = 2 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
