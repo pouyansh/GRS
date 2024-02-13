@@ -199,3 +199,14 @@ Generating datasets
 N = 12500 dimension = 3 p = 1
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500 dimension: 3 p: 1
+Operations: 67761502
+Hungarians: 23557
+LastLevel: 2173
+Boundary: 20935
+Time taken: 1527570 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 12500 dimension = 3 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------

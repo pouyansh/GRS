@@ -74,3 +74,14 @@ Time taken: 1696269 ms
 N = 5000 dimension = 6 p = 3
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 6 p: 3
+Operations: 54702189
+Hungarians: 9879
+LastLevel: 1173
+Boundary: 819
+Time taken: 1943810 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 5000 dimension = 6 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------

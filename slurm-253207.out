@@ -85,3 +85,19 @@ Time taken: 1854024 ms
 N = 5000 dimension = 3 p = 4
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 3 p: 4
+Operations: 37413015
+Hungarians: 10886
+LastLevel: 468
+Boundary: 2132
+Time taken: 444814 ms
+-------------------------------------------------------------------------------
+Operations -> 37586068 37272839 37271640 37413015 
+Hungarians -> 10812 10883 10868 10886 
+Last Level Hungarians -> 503 466 465 468 
+Times -> 1304560.0 1596762.0 1854024.0 444814.0 
+Initializing dataset from Datasets/uniform-100d/pointset_0.txt
+----------------------------------
+N = 7500 dimension = 3 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
