@@ -22,7 +22,13 @@ public class DivideAndConquerHungarianAlgorithm {
     this.operationsNum = 0;
     this.hungarianNum = 0;
     this.lastLevelHungrians = 0;
+    matchingCardinality = 0;
     this.origin = b;
+    Boundary.childIndex = new int[(int)Math.pow(2, b.dimension)];
+    for (int i = 0; i < (int)Math.pow(2, b.dimension); i++) {
+      Boundary.childIndex[i] = -1;
+    }
+    Boundary.countToIndex = new int[(int)Math.pow(2, b.dimension)];
 
     // Clear the stale values
     for (int i = 0; i < N; i++) {
@@ -190,6 +196,9 @@ public class DivideAndConquerHungarianAlgorithm {
     }
     int pathArraySize = 0;
     int freeMinDistanceIdxInACopy = freeMinDistanceIdxInA;
+    if (freeMinDistanceIdxInA != 0) {
+      matchingCardinality ++;
+    }
     while (freeMinDistanceIdxInACopy > -1) {
       pathArraySize++;
       freeMinDistanceIdxInACopy = parent[freeMinDistanceIdxInACopy];
@@ -276,6 +285,7 @@ public class DivideAndConquerHungarianAlgorithm {
     // Solve the 4 subproblems independently
     for (int i = 0; i < children.length; i++) {
       solverHelper(children[i], pp, level + 1);
+      getMatchingCardinalityAndCost(origin, pp);
     }
 
     for (int i = 0; i < b.B.length; i++) {

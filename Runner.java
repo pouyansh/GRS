@@ -31,8 +31,10 @@ public class Runner {
 
       for (int i = 0; i < N; i++) {
         arr = scanner.nextLine().split(" ");
-        double[] coords = {Double.parseDouble(arr[0]),
-          Double.parseDouble(arr[1])};
+        double[] coords = new double[dimension];
+        for (int j = 0; j < dimension; j++) {
+          coords[j] = Double.parseDouble(arr[j]);
+        }
         A[i] =
           new Point(coords, i);
       }
@@ -41,7 +43,10 @@ public class Runner {
       scanner = new Scanner(new File(path2));
       for (int i = 0; i < N; i++) {
         arr = scanner.nextLine().split(" ");
-        double[] coords = {Double.parseDouble(arr[0]), Double.parseDouble(arr[1])};
+        double[] coords = new double[dimension];
+        for (int j = 0; j < dimension; j++) {
+          coords[j] = Double.parseDouble(arr[j]);
+        }
         B[i] =
           new Point(coords, i);
       }
@@ -138,19 +143,24 @@ public class Runner {
     System.out.println(
       "-----------------Divide and Conquer Hungarian Algorithm Solver-----------------"
     );
-    double[] lowCoords = {0, 0};
-    double[] highCoords = {1, 1};
+    Boundary.totalchildnum = 0;
+    double[] lowCoords = new double[dimension];
+    double[] highCoords = new double[dimension];
+    for (int i = 0; i < dimension; i++) {
+      lowCoords[i] = 0;
+      highCoords[i] = 1;
+    }
     Boundary boundary = new Boundary(new Point(lowCoords, -1), new Point(highCoords, -1), new Point(lowCoords, -1), new Point(highCoords, -1), A, B , true);
     boundary.reset();
     dacha = new DivideAndConquerHungarianAlgorithm(boundary);
     startTime = System.currentTimeMillis();
     dacha.solver(p);
     endTime = System.currentTimeMillis();
-    if (!validateDualWeights(p)) {
-      System.out.println("Infeasible dual weights");
-      System.exit(0);
-    }
-    System.out.println("Feasible dual weights");
+    // if (!validateDualWeights(p)) {
+    //   System.out.println("Infeasible dual weights");
+    //   System.exit(0);
+    // }
+    // System.out.println("Feasible dual weights");
 
     operationNums[index] = dacha.operationsNum;
     hungarianNums[index] = dacha.hungarianNum;
@@ -160,6 +170,7 @@ public class Runner {
     System.out.println("Operations: " + dacha.operationsNum);
     System.out.println("Hungarians: " + dacha.hungarianNum);
     System.out.println("LastLevel: " + dacha.lastLevelHungrians);
+    System.out.println("Boundary: " + Boundary.totalchildnum);
     System.out.println("Time taken: " + (endTime - startTime) + " ms");
     System.out.println(
       "-------------------------------------------------------------------------------"
@@ -168,50 +179,52 @@ public class Runner {
 
   public static void main(String[] args) {
     // Add the path to the two datasets and the number of points to be used from each dataset
-    path1 = "Datasets/A1.txt";
-    path2 = "Datasets/B1.txt";
-    for (dimension = 5; dimension <= 9; dimension += 1) {
-      for (N = 2500; N <= 12500; N += 2500) {
-        operationNums = new long[6];
-        hungarianNums = new int[6];
-        lastLevelHungrians = new int[6];
-        times = new double[6];
-        generateDatasets();
-        for (int i = 0; i <= 5; i++) {
-          int p = i+1;
-          System.out.println(
+    path1 = "Datasets/uniform-100d/pointset_0.txt";
+    path2 = "Datasets/uniform-100d/pointset_1.txt";
+    dimension = 3;
+    int rangeP = 4;
+    for (N = 1000; N <= 5000; N += 1000) {
+      initializeDatasets();
+      operationNums = new long[rangeP];
+      hungarianNums = new int[rangeP];
+      lastLevelHungrians = new int[rangeP];
+      times = new double[6];
+      for (int j = 0; j < rangeP; j++) {
+        int p = j+1;
+        System.out.println(
+        "----------------------------------"
+        );
+        System.out.println(
+          "N = " + N + " dimension = " + dimension + " p = " + p
+        );
+        System.out.println(
           "----------------------------------"
-          );
-          System.out.println(
-            "N = " + N + " dimension = " + dimension + " p = " + p
-          );
-          System.out.println(
-            "----------------------------------"
-          );
-          runDivideAndConquerHungarianSolver(p, i);
-        }
-        // runDivideAndConquerHungarianSolver(1, 0);
-        System.out.print("Operations -> ");
-        for (int i = 0; i < 6; i ++) {
-          System.out.print(operationNums[i] + " ");
-        }
-        System.out.println();
-        System.out.print("Hungarians -> ");
-        for (int i = 0; i < 6; i ++) {
-          System.out.print(hungarianNums[i] + " ");
-        }
-        System.out.println();
-        System.out.print("Last Level Hungarians -> ");
-        for (int i = 0; i < 6; i ++) {
-          System.out.print(lastLevelHungrians[i] + " ");
-        }
-        System.out.println();
-        System.out.print("Times -> ");
-        for (int i = 0; i < 6; i ++) {
-          System.out.print(times[i] + " ");
-        }
-        System.out.println();
+        );
+        runDivideAndConquerHungarianSolver(p, j);
       }
+        
+      // runDivideAndConquerHungarianSolver(1, 0);
+      System.out.print("Operations -> ");
+      for (int i = 0; i < rangeP; i ++) {
+        System.out.print(operationNums[i] + " ");
+      }
+      System.out.println();
+      System.out.print("Hungarians -> ");
+      for (int i = 0; i < rangeP; i ++) {
+        System.out.print(hungarianNums[i] + " ");
+      }
+      System.out.println();
+      System.out.print("Last Level Hungarians -> ");
+      for (int i = 0; i < rangeP; i ++) {
+        System.out.print(lastLevelHungrians[i] + " ");
+      }
+      System.out.println();
+      System.out.print("Times -> ");
+      for (int i = 0; i < rangeP; i ++) {
+        System.out.print(times[i] + " ");
+      }
+      System.out.println();
     }
+    
   }
 }

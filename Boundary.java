@@ -4,8 +4,10 @@ public class Boundary {
 
   public Point lowPoint, highPoint, originLowPoint, originHighPoint;
   private Boundary adjusted;
-  private int dimension;
+  public int dimension;
   public Point[] A, B;
+  public static int totalchildnum=0;
+  public static int[] childIndex, countToIndex;
 
   Boundary(
     Point lowPoint,
@@ -68,18 +70,20 @@ public class Boundary {
   }
 
   public Boundary[] partition() {
-    
     double[] middleCoords = new double[dimension];
     for (int i = 0; i < dimension; i++) {
       middleCoords[i] = (this.lowPoint.coordinates[i] + this.highPoint.coordinates[i]) / 2;
     }
-    int childnum = (int)Math.pow(dimension, 2);
+    ChildrenDetails cd = findSizes(middleCoords);
+    int childnum = cd.childnum;
+    totalchildnum += childnum;
+    // System.out.println("Cell with " + (A.length + B.length) + " points have " + childnum + " children");
 
     Boundary[] children = new Boundary[childnum];
     for (int i = 0; i < childnum; i++) {
+      int index = countToIndex[i];
       double[] lowCoords = new double[dimension];
       double[] highCoords = new double[dimension];
-      int index = i;
       for (int k = 0; k < dimension; k++) {
         if (index % 2 == 0) {
           lowCoords[k] = this.lowPoint.coordinates[k];
@@ -93,39 +97,68 @@ public class Boundary {
       children[i] = new Boundary(new Point(lowCoords, -1), new Point(highCoords, -1), originLowPoint, originHighPoint, null, null, true);
     }
 
-    int[] sizesA = findSizes(A, middleCoords);
-    int[] sizesB = findSizes(B, middleCoords);
-
     for (int i = 0; i < childnum; i++) {
-      children[i].A = new Point[sizesA[i]];
-      children[i].B = new Point[sizesB[i]];
+      children[i].A = new Point[cd.sizesA[i]];
+      children[i].B = new Point[cd.sizesB[i]];
     }
     
     assignPoints(children, middleCoords);
+
+    for (int i = 0; i < childnum; i++) {
+      childIndex[countToIndex[i]] = -1;
+      countToIndex[i] = -1;
+    }
     return children;
   }
 
-  private int[] findSizes(Point[] points, double[] middleCoords) {
-    int childnum = (int)Math.pow(dimension, 2);
-    // System.out.println("middle points:" + Arrays.toString(middleCoords));
-    int[] sizes = new int[childnum];
-    for (int i = 0; i < points.length; i++) {
-      Point p = points[i];
-      int index = 0;
-      for (int d = dimension-1; d >= 0; d--) {
-        index *= 2;
-        if (p.coordinates[d] >= middleCoords[d]) {
-          index++;
-        }
+  private ChildrenDetails findSizes(double[] middleCoords) {
+    ChildrenDetails cd = new ChildrenDetails();
+    int counter = 0;
+    for (int i = 0; i < A.length; i++) {
+      int index = computeIndex(A[i], middleCoords);
+      if (childIndex[index] == -1) {
+        childIndex[index] = counter;
+        countToIndex[counter] = index;
+        counter++;
       }
-      // System.out.println("point " + Arrays.toString(p.coordinates) + " " + index);
-      sizes[index]++;
     }
-    return sizes;
+    for (int i = 0; i < B.length; i++) {
+      int index = computeIndex(B[i], middleCoords);
+      if (childIndex[index] == -1) {
+        childIndex[index] = counter;
+        countToIndex[counter] = index;
+        counter++;
+      }
+    }
+    cd.childnum = counter;
+    int[] sizesA = new int[counter];
+    int[] sizesB = new int[counter];
+    for (int i = 0; i < A.length; i++) {
+      int index = computeIndex(A[i], middleCoords);
+      sizesA[childIndex[index]]++;
+    }
+    for (int i = 0; i < B.length; i++) {
+      int index = computeIndex(B[i], middleCoords);
+      sizesB[childIndex[index]]++;
+    }
+    cd.sizesA = sizesA;
+    cd.sizesB = sizesB;
+    return cd;
+  }
+
+  private int computeIndex(Point p, double[] middleCoords) {
+    int index = 0;
+    for (int d = dimension-1; d >= 0; d--) {
+      index *= 2;
+      if (p.coordinates[d] >= middleCoords[d]) {
+        index++;
+      }
+    }
+    return index;
   }
 
   private void assignPoints(Boundary[] children, double[] middleCoords) {
-    int childnum = (int)Math.pow(dimension, 2);
+    int childnum = (int)Math.pow(2, dimension);
     int[] counterA = new int[childnum];
     int[] counterB = new int[childnum];
 
@@ -137,7 +170,8 @@ public class Boundary {
           index++;
         }
       }
-      children[index].A[counterA[index]++] = a;
+      // System.out.println("Point " + Arrays.toString(a.coordinates) + " assigned to " + children[childIndex[index]].toString());
+      children[childIndex[index]].A[counterA[childIndex[index]]++] = a;
     }
     for (Point b: B) {
       int index = 0;
@@ -147,7 +181,7 @@ public class Boundary {
           index++;
         }
       }
-      children[index].B[counterB[index]++] = b;
+      children[childIndex[index]].B[counterB[childIndex[index]]++] = b;
     }
   }
 
@@ -160,4 +194,10 @@ public class Boundary {
       Arrays.toString(this.highPoint.coordinates)
     );
   }
+}
+
+class ChildrenDetails {
+  int[] sizesA;
+  int[] sizesB;
+  int childnum;
 }
