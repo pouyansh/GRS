@@ -63,13 +63,14 @@ public class Runner {
   private static void generateDatasets() {
     System.out.println("Generating datasets ");
     Random rand = new Random();
+    int bound = 1000;
     A = new Point[N];
     B = new Point[N];
-    String[] arr;
     for (int i = 0; i < N; i++) {
       double[] coords = new double[dimension];
       for (int j = 0; j < dimension; j++) {
         coords[j] = rand.nextDouble();
+        // coords[j] = (double)rand.nextInt(bound)/bound;
       }
       A[i] =
         new Point(coords, i);
@@ -79,6 +80,7 @@ public class Runner {
       double[] coords = new double[dimension];
       for (int j = 0; j < dimension; j++) {
         coords[j] = rand.nextDouble();
+        // coords[j] = (double)rand.nextInt(bound)/bound;
       }
       B[i] =
         new Point(coords, i);
@@ -184,8 +186,8 @@ public class Runner {
     path1 = "Datasets/uniform-100d/pointset_0.txt";
     path2 = "Datasets/uniform-100d/pointset_1.txt";
     dimension = 3;
-    int rangeP = 4;
-    for (N = 2500; N <= 15000; N += 2500) {
+    int rangeP = 1;
+    for (N = 5000; N <= 5000; N += 2500) {
       generateDatasets();
       operationNums = new long[rangeP];
       hungarianNums = new int[rangeP];
