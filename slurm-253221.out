@@ -210,3 +210,14 @@ Time taken: 1527570 ms
 N = 12500 dimension = 3 p = 2
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 12500 dimension: 3 p: 2
+Operations: 68350897
+Hungarians: 23805
+LastLevel: 2188
+Boundary: 20935
+Time taken: 1594682 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 12500 dimension = 3 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
