@@ -1332,3 +1332,14 @@ Times -> 597962.0 669778.0 783381.0 145237.0 1128813.0 1191972.0
 N = 12500 dimension = 8 p = 1
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 12500 dimension: 8 p: 1
+Operations: 316003112
+Hungarians: 52746
+LastLevel: 9919
+Time taken: 1296957 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 12500 dimension = 8 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
