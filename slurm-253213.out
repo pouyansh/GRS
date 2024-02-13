@@ -1,0 +1,16 @@
+Initializing dataset from Datasets/uniform-100d/pointset_0.txt
+----------------------------------
+N = 2500 dimension = 10 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 10 p: 1
+Operations: 17772257
+Hungarians: 4504
+LastLevel: 1391
+Boundary: 316
+Time taken: 367834 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 10 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------

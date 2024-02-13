@@ -1,0 +1,270 @@
+----------------------------------
+N = 15000 dimension = 2 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 2 p: 1
+Operations: 25308975
+Hungarians: 24531
+LastLevel: 456
+Time taken: 1603928 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 2 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 2 p: 2
+Operations: 25558258
+Hungarians: 25021
+LastLevel: 456
+Time taken: 1552346 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 2 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 2 p: 3
+Operations: 25631775
+Hungarians: 25225
+LastLevel: 452
+Time taken: 1512915 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 2 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 2 p: 4
+Operations: 25575670
+Hungarians: 25269
+LastLevel: 448
+Time taken: 149471 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 2 p = 5
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 2 p: 5
+Operations: 25542206
+Hungarians: 25284
+LastLevel: 446
+Time taken: 1481227 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 2 p = 6
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 2 p: 6
+Operations: 25648844
+Hungarians: 25090
+LastLevel: 451
+Time taken: 1538049 ms
+-------------------------------------------------------------------------------
+Operations -> 25308975 25558258 25631775 25575670 25542206 25648844 
+Hungarians -> 24531 25021 25225 25269 25284 25090 
+Last Level Hungarians -> 456 456 452 448 446 451 
+Times -> 1603928.0 1552346.0 1512915.0 149471.0 1481227.0 1538049.0 
+----------------------------------
+N = 20000 dimension = 2 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 20000 dimension: 2 p: 1
+Operations: 39163674
+Hungarians: 32500
+LastLevel: 524
+Time taken: 3629759 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 20000 dimension = 2 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 20000 dimension: 2 p: 2
+Operations: 39558566
+Hungarians: 33392
+LastLevel: 517
+Time taken: 3561186 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 20000 dimension = 2 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 20000 dimension: 2 p: 3
+Operations: 39828565
+Hungarians: 33550
+LastLevel: 520
+Time taken: 3527955 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 20000 dimension = 2 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 20000 dimension: 2 p: 4
+Operations: 39496482
+Hungarians: 33585
+LastLevel: 515
+Time taken: 390610 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 20000 dimension = 2 p = 5
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 20000 dimension: 2 p: 5
+Operations: 39569480
+Hungarians: 33605
+LastLevel: 514
+Time taken: 3725417 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 20000 dimension = 2 p = 6
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 20000 dimension: 2 p: 6
+Operations: 39592931
+Hungarians: 33275
+LastLevel: 516
+Time taken: 4007052 ms
+-------------------------------------------------------------------------------
+Operations -> 39163674 39558566 39828565 39496482 39569480 39592931 
+Hungarians -> 32500 33392 33550 33585 33605 33275 
+Last Level Hungarians -> 524 517 520 515 514 516 
+Times -> 3629759.0 3561186.0 3527955.0 390610.0 3725417.0 4007052.0 
+----------------------------------
+N = 25000 dimension = 2 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 25000 dimension: 2 p: 1
+Operations: 60749489
+Hungarians: 40654
+LastLevel: 699
+Time taken: 4579488 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 25000 dimension = 2 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 25000 dimension: 2 p: 2
+Operations: 61274247
+Hungarians: 41641
+LastLevel: 688
+Time taken: 5013638 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 25000 dimension = 2 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 25000 dimension: 2 p: 3
+Operations: 60835424
+Hungarians: 41871
+LastLevel: 677
+Time taken: 4840422 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 25000 dimension = 2 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 25000 dimension: 2 p: 4
+Operations: 60662679
+Hungarians: 42034
+LastLevel: 675
+Time taken: 498055 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 25000 dimension = 2 p = 5
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 25000 dimension: 2 p: 5
+Operations: 60372833
+Hungarians: 41962
+LastLevel: 669
+Time taken: 5040755 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 25000 dimension = 2 p = 6
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 25000 dimension: 2 p: 6
+Operations: 60035380
+Hungarians: 41362
+LastLevel: 669
+Time taken: 5275135 ms
+-------------------------------------------------------------------------------
+Operations -> 60749489 61274247 60835424 60662679 60372833 60035380 
+Hungarians -> 40654 41641 41871 42034 41962 41362 
+Last Level Hungarians -> 699 688 677 675 669 669 
+Times -> 4579488.0 5013638.0 4840422.0 498055.0 5040755.0 5275135.0 
+----------------------------------
+N = 15000 dimension = 3 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 3 p: 1
+Operations: 88984000
+Hungarians: 41944
+LastLevel: 1757
+Time taken: 2838297 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 3 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 3 p: 2
+Operations: 89985630
+Hungarians: 42582
+LastLevel: 1764
+Time taken: 2857976 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 3 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 3 p: 3
+Operations: 90463275
+Hungarians: 42670
+LastLevel: 1765
+Time taken: 2912905 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 3 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 3 p: 4
+Operations: 90110655
+Hungarians: 42554
+LastLevel: 1758
+Time taken: 326322 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 3 p = 5
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+Feasible dual weights
+N: 15000 dimension: 3 p: 5
+Operations: 89915979
+Hungarians: 42446
+LastLevel: 1751
+Time taken: 3125222 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 15000 dimension = 3 p = 6
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+slurmstepd: error: *** JOB 253119 ON inf047 CANCELLED AT 2024-02-13T12:12:29 ***

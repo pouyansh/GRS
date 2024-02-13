@@ -23,6 +23,7 @@ public class Runner {
    * Read the two datasets
    */
   private static void initializeDatasets() {
+    System.out.println("Initializing dataset from " + path1);
     A = new Point[N];
     B = new Point[N];
     String[] arr;
@@ -60,6 +61,7 @@ public class Runner {
 
 
   private static void generateDatasets() {
+    System.out.println("Generating datasets ");
     Random rand = new Random();
     A = new Point[N];
     B = new Point[N];
@@ -183,8 +185,8 @@ public class Runner {
     path2 = "Datasets/uniform-100d/pointset_1.txt";
     dimension = 3;
     int rangeP = 4;
-    for (N = 1000; N <= 5000; N += 1000) {
-      initializeDatasets();
+    for (N = 2500; N <= 15000; N += 2500) {
+      generateDatasets();
       operationNums = new long[rangeP];
       hungarianNums = new int[rangeP];
       lastLevelHungrians = new int[rangeP];

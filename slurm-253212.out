@@ -1,0 +1,27 @@
+Initializing dataset from Datasets/uniform-100d/pointset_0.txt
+----------------------------------
+N = 2500 dimension = 6 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 6 p: 1
+Operations: 13713625
+Hungarians: 4869
+LastLevel: 615
+Boundary: 623
+Time taken: 194134 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 6 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 6 p: 2
+Operations: 13655168
+Hungarians: 4878
+LastLevel: 601
+Boundary: 623
+Time taken: 221536 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 6 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------

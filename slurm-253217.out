@@ -1,0 +1,76 @@
+Generating datasets 
+----------------------------------
+N = 2500 dimension = 10 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 10 p: 1
+Operations: 12508980
+Hungarians: 3898
+LastLevel: 2500
+Boundary: 4815
+Time taken: 20971 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 10 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 10 p: 2
+Operations: 12508980
+Hungarians: 3898
+LastLevel: 2500
+Boundary: 4815
+Time taken: 23234 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 10 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 10 p: 3
+Operations: 12508980
+Hungarians: 3898
+LastLevel: 2500
+Boundary: 4815
+Time taken: 26239 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 10 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 10 p: 4
+Operations: 12508980
+Hungarians: 3898
+LastLevel: 2500
+Boundary: 4815
+Time taken: 4483 ms
+-------------------------------------------------------------------------------
+Operations -> 12508980 12508980 12508980 12508980 
+Hungarians -> 3898 3898 3898 3898 
+Last Level Hungarians -> 2500 2500 2500 2500 
+Times -> 20971.0 23234.0 26239.0 4483.0 
+Generating datasets 
+----------------------------------
+N = 5000 dimension = 10 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 10 p: 1
+Operations: 50035628
+Hungarians: 8300
+LastLevel: 5000
+Boundary: 10688
+Time taken: 137169 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 5000 dimension = 10 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 10 p: 2
+Operations: 50035628
+Hungarians: 8300
+LastLevel: 5000
+Boundary: 10688
+Time taken: 160642 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 5000 dimension = 10 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
