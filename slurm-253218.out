@@ -74,3 +74,128 @@ Time taken: 143276 ms
 N = 5000 dimension = 6 p = 3
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 6 p: 3
+Operations: 46986852
+Hungarians: 9409
+LastLevel: 4645
+Boundary: 7911
+Time taken: 160398 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 5000 dimension = 6 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 6 p: 4
+Operations: 46985872
+Hungarians: 9403
+LastLevel: 4645
+Boundary: 7911
+Time taken: 25114 ms
+-------------------------------------------------------------------------------
+Operations -> 46975111 46977665 46986852 46985872 
+Hungarians -> 9397 9413 9409 9403 
+Last Level Hungarians -> 4644 4644 4645 4645 
+Times -> 116486.0 143276.0 160398.0 25114.0 
+Generating datasets 
+----------------------------------
+N = 7500 dimension = 6 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 7500 dimension: 6 p: 1
+Operations: 104288316
+Hungarians: 14934
+LastLevel: 6873
+Boundary: 13144
+Time taken: 323989 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 7500 dimension = 6 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 7500 dimension: 6 p: 2
+Operations: 104280722
+Hungarians: 14964
+LastLevel: 6872
+Boundary: 13144
+Time taken: 388839 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 7500 dimension = 6 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 7500 dimension: 6 p: 3
+Operations: 104323649
+Hungarians: 14958
+LastLevel: 6875
+Boundary: 13144
+Time taken: 450073 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 7500 dimension = 6 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 7500 dimension: 6 p: 4
+Operations: 104336846
+Hungarians: 14952
+LastLevel: 6876
+Boundary: 13144
+Time taken: 75317 ms
+-------------------------------------------------------------------------------
+Operations -> 104288316 104280722 104323649 104336846 
+Hungarians -> 14934 14964 14958 14952 
+Last Level Hungarians -> 6873 6872 6875 6876 
+Times -> 323989.0 388839.0 450073.0 75317.0 
+Generating datasets 
+----------------------------------
+N = 10000 dimension = 6 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 10000 dimension: 6 p: 1
+Operations: 182976381
+Hungarians: 20456
+LastLevel: 9044
+Boundary: 18913
+Time taken: 756477 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 10000 dimension = 6 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 10000 dimension: 6 p: 2
+Operations: 182989119
+Hungarians: 20496
+LastLevel: 9044
+Boundary: 18913
+Time taken: 880354 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 10000 dimension = 6 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 10000 dimension: 6 p: 3
+Operations: 182986664
+Hungarians: 20489
+LastLevel: 9044
+Boundary: 18913
+Time taken: 934483 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 10000 dimension = 6 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 10000 dimension: 6 p: 4
+Operations: 182984836
+Hungarians: 20483
+LastLevel: 9044
+Boundary: 18913
+Time taken: 218035 ms
+-------------------------------------------------------------------------------
+Operations -> 182976381 182989119 182986664 182984836 
+Hungarians -> 20456 20496 20489 20483 
+Last Level Hungarians -> 9044 9044 9044 9044 
+Times -> 756477.0 880354.0 934483.0 218035.0 
+Generating datasets 
+----------------------------------
+N = 12500 dimension = 6 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------

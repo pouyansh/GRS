@@ -3,3 +3,14 @@ Generating datasets
 N = 20000 dimension = 6 p = 1
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 20000 dimension: 6 p: 1
+Operations: 705130435
+Hungarians: 42108
+LastLevel: 17417
+Boundary: 40160
+Time taken: 4077942 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 20000 dimension = 6 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------

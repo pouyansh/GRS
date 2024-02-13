@@ -25,3 +25,52 @@ Time taken: 221536 ms
 N = 2500 dimension = 6 p = 3
 ----------------------------------
 -----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 6 p: 3
+Operations: 13627167
+Hungarians: 4863
+LastLevel: 596
+Boundary: 623
+Time taken: 251196 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 2500 dimension = 6 p = 4
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 2500 dimension: 6 p: 4
+Operations: 13602688
+Hungarians: 4852
+LastLevel: 594
+Boundary: 623
+Time taken: 71330 ms
+-------------------------------------------------------------------------------
+Operations -> 13713625 13655168 13627167 13602688 
+Hungarians -> 4869 4878 4863 4852 
+Last Level Hungarians -> 615 601 596 594 
+Times -> 194134.0 221536.0 251196.0 71330.0 
+Initializing dataset from Datasets/uniform-100d/pointset_0.txt
+----------------------------------
+N = 5000 dimension = 6 p = 1
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 6 p: 1
+Operations: 55034904
+Hungarians: 9883
+LastLevel: 1206
+Boundary: 819
+Time taken: 1514601 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 5000 dimension = 6 p = 2
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
+N: 5000 dimension: 6 p: 2
+Operations: 54885464
+Hungarians: 9915
+LastLevel: 1181
+Boundary: 819
+Time taken: 1696269 ms
+-------------------------------------------------------------------------------
+----------------------------------
+N = 5000 dimension = 6 p = 3
+----------------------------------
+-----------------Divide and Conquer Hungarian Algorithm Solver-----------------
